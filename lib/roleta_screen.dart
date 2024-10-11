@@ -45,15 +45,14 @@ class _RoletaScreen extends State<RoletaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Boa sorte!"),
-      ),
+      appBar: PreferredSize(preferredSize: Size.fromHeight(0), child: AppBar()),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return Container(
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fill,
+                opacity: 0.2,
                 image: AssetImage("lib/shared/fundo.jpg")
               )
             ),
@@ -62,6 +61,20 @@ class _RoletaScreen extends State<RoletaScreen> {
                 Expanded(
                   child: Column(
                     children: [
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_back, color: Colors.black,),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Image.asset("lib/shared/trevo.png", width: 30,),
+                          Text(" Boa sorte!!!", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w300),)
+                        ],
+                      ),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(right: 12, left: 12),
