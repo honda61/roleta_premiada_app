@@ -50,62 +50,70 @@ class _RoletaScreen extends State<RoletaScreen> {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return Column(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 12, left: 12),
-                        child: FortuneWheel(
-                          selected: controller.stream,
-                          animateFirst: false,
-                          onAnimationEnd: () {
-                            _showItemWin(context, constraints);
-                          },
-                          duration: Duration(seconds: widget.duration),
-                          indicators: <FortuneIndicator>[
-                            FortuneIndicator(
-                              alignment: Alignment.topCenter,
-                              child: TriangleIndicator(
-                                color: widget.arrowColor,
-                                width: 30.0,
-                                height: 20.0,
-                                elevation: 3,
+          return Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage("lib/shared/fundo.jpg")
+              )
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 12, left: 12),
+                          child: FortuneWheel(
+                            selected: controller.stream,
+                            animateFirst: false,
+                            onAnimationEnd: () {
+                              _showItemWin(context, constraints);
+                            },
+                            duration: Duration(seconds: widget.duration),
+                            indicators: <FortuneIndicator>[
+                              FortuneIndicator(
+                                alignment: Alignment.topCenter,
+                                child: TriangleIndicator(
+                                  color: widget.arrowColor,
+                                  width: 30.0,
+                                  height: 20.0,
+                                  elevation: 3,
+                                ),
                               ),
-                            ),
-                          ],
-                          items: itemsRoleta,
+                            ],
+                            items: itemsRoleta,
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-                        onPressed: () {
-                          int rendomval = Fortune.randomInt(0, widget.items.length); setState(() { controller.add(rendomval); });
-                          print(rendomval);
-                          setState(() {
-                            itemWin = rendomval;
-                          });
-                        },
-                        child: const Wrap(
-                          alignment: WrapAlignment.center,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            Icon(Icons.sync, color: Colors.white,),
-                            Text(" Girar", style: TextStyle(color: Colors.white, fontSize: 16),)
-                          ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+                          onPressed: () {
+                            int rendomval = Fortune.randomInt(0, widget.items.length); setState(() { controller.add(rendomval); });
+                            print(rendomval);
+                            setState(() {
+                              itemWin = rendomval;
+                            });
+                          },
+                          child: const Wrap(
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Icon(Icons.sync, color: Colors.white,),
+                              Text(" Girar", style: TextStyle(color: Colors.white, fontSize: 16),)
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20,)
-                  ],
+                      const SizedBox(height: 20,)
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         }
       ),
